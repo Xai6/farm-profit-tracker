@@ -59,7 +59,12 @@ function updateBones() {
     let bonemealStacks = bonemealSlots + (extraHoppers * 5);
     let bonesNeeded = Math.ceil((bonemealStacks * 64) / 3);
 
-    document.getElementById('bonesResult').innerText = `Bones Needed: ${bonesNeeded}`;
+    // Calculate the cost of bones (each bone costs 49)
+    let bonesCost = bonesNeeded * 49;
+
+    // Format numbers with commas
+    document.getElementById('bonesResult').innerText = `Bones Needed: ${bonesNeeded.toLocaleString()}`;
+    document.getElementById('bonesCost').innerText = `Cost for Bones: $${bonesCost.toLocaleString()}`;
 }
 
 function toggleScreen() {
