@@ -50,27 +50,27 @@
         </a>
     </div>
 
-    <!-- Bone Meal Calculator -->
-    <div class="container" id="boneCalculator" style="display: none;">
-        <h2>Bone Calculator</h2>
-        <label>Farm Design:
-            <select id="farmDesign" onchange="updateBones()">
-                <option value="3706">3706</option>
-                <option value="flow">Flow</option>
-            </select>
-        </label><br>
-        <label>Number of Modules: <input type="number" id="modules" min="1" value="1" oninput="updateBones()"></label><br>
-        
-        <!-- Green Glow Box for Bones Needed -->
-        <div class="bones-box">
-            <h3 id="bonesResult">Bones Needed: 0</h3>
-        </div> <br>
-        <label> <br>  <b>rough estement</b></label> <br>
-        <br>
-        <a href="https://discord.gg/beyDSEqpKe" target="_blank">
-            <img src="discord-button.png" alt="Join Discord" class="discord-button">
-        </a>
-    </div>
+<!-- Bone Meal Calculator -->
+<div class="container" id="boneCalculator" style="display: none;">
+    <h2>Bone Calculator</h2>
+    <label>Farm Design:
+        <select id="farmDesign" onchange="updateBones()">
+            <option value="3706">3706</option>
+            <option value="flow">Flow</option>
+        </select>
+    </label><br>
+    <label>Number of Modules: <input type="number" id="modules" min="1" value="1" oninput="updateBones()"></label><br>
+    
+    <!-- Green Glow Box for Bones Needed -->
+    <div class="bones-box">
+        <h3 id="bonesResult">Bones Needed: 0</h3>
+        <p id="bonesCost"></p> <!-- Add this line for cost display -->
+    </div> <br>
+    <label><br><b>rough estimate</b></label><br><br>
+    <a href="https://discord.gg/beyDSEqpKe" target="_blank">
+        <img src="discord-button.png" alt="Join Discord" class="discord-button">
+    </a>
+</div>
 
 </body>
 </html>
