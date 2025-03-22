@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Profit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Farm Profit Tracker</h2>
+        <label>Farm Type:
+            <div class="farm-select">
+                <img id="farmImage" src="pickles.png" alt="Pickles">
+                <select id="farmType" onchange="updateFarmImage()">
+                    <option value="pickles" data-img="pickles.png">Pickles</option>
+                    <option value="bamboo" data-img="bamboo.png">Bamboo</option>
+                    <option value="sweetberries" data-img="sweetberries.png">Sweet Berries</option>
+                    <option value="kelp" data-img="kelp.png">Kelp</option>
+                </select>
+            </div>
+        </label><br>
+        <label>Rows of Double Chests: <input type="number" id="rows" min="1" value="1"></label><br>
+        <label>Height (Chests Stacked): <input type="number" id="height" min="1" value="1"></label><br>
+        <label>Double-Sided? <input type="checkbox" id="doubleSided"></label><br>
+        <label>Multiplier:
+            <select id="multiplier">
+                <script>
+                    for (let i = 1; i <= 3; i += 0.1) {
+                        document.write(`<option value="${i.toFixed(1)}">${i.toFixed(1)}</option>`);
+                    }
+                </script>
+            </select>
+        </label><br>
+        <button onclick="calculateProfit()">Calculate Profit</button>
+        <h3 id="result">Profit: $0</h3>
+    </div>
+
+    <script>
+        const basePrices = {
+            pickles: 192,
+            bamboo: 50,
+            sweetberries: 75,
+            kelp: 100
+        };
+
+        function updateFarmImage() {
+            let farmType = document.getElementById('farmType');
+            let selectedOption = farmType.options[farmType.selectedIndex];
+            let farmImage = document.getElementById('farmImage');
+            farmImage.src = selectedOption.getAttribute('data-img');
+            farmImage.alt = selectedOption.text;
+        }
+
+        function calculateProfit() {
+            let farmType = document.getElementById('farmType').value;
+            let rows = parseInt(document.getElementById('rows').value);
+            let height = parseInt(document.getElementById('height').value);
+            let doubleSided = document.getElementById('doubleSided').checked ? 2 : 1;
+            let multiplier = parseFloat(document.getElementById('multiplier').value);
+            let basePricePerStack = basePrices[farmType];
+
+            let stacksPerChest = 54;
+            let totalStacks = rows * height * doubleSided * stacksPerChest;
+            let baseProfit = totalStacks * basePricePerStack;
+            let profit = baseProfit * multiplier;
+
+            document.getElementById('result').innerText = `Profit: $${profit.toLocaleString()}`;
+        }
+    </script>
+</body>
+</html>
