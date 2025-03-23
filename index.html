@@ -6,14 +6,13 @@
     <title>Farm Tools</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="icon" href="favicon-32x32.png" type="image/png">
 </head>
 <body>
     <div class="switch-container">
         <button id="toggleButton" onclick="toggleScreen()">Switch to Bone Calculator</button>
     </div>
 
-    <!-- Farm Profit Tracker -->
     <div class="container" id="profitTracker">
         <h2>Farm Profit Tracker</h2>
         <label>Farm Type:
@@ -40,7 +39,6 @@
             </select>
         </label><br>
         
-        <!-- Calculate Profit Button -->
         <button onclick="calculateProfit()">Calculate Profit</button>
         
         <h3 id="result">Profit: $0</h3>
@@ -50,27 +48,33 @@
         </a>
     </div>
 
-<!-- Bone Meal Calculator -->
-<div class="container" id="boneCalculator" style="display: none;">
-    <h2>Bone Calculator</h2>
-    <label>Farm Design:
-        <select id="farmDesign" onchange="updateBones()">
-            <option value="3706">3706</option>
-            <option value="flow">Flow</option>
-        </select>
-    </label><br>
-    <label>Number of Modules: <input type="number" id="modules" min="1" value="1" oninput="updateBones()"></label><br>
-    
-    <!-- Green Glow Box for Bones Needed -->
-    <div class="bones-box">
-        <h3 id="bonesResult">Bones Needed: 0</h3>
-        <p id="bonesCost"></p> <!-- Add this line for cost display -->
-    </div> <br>
-    <label><br><b>rough estimate</b></label><br><br>
-    <a href="https://discord.gg/beyDSEqpKe" target="_blank">
-        <img src="discord-button.png" alt="Join Discord" class="discord-button">
-    </a>
-</div>
+    <div class="container" id="boneCalculator" style="display: none;">
+        <h2>Bone Calculator</h2>
+        <label>Farm Design:
+            <select id="farmDesign" onchange="updateBones()">
+                <option value="3706">3706</option>
+                <option value="flow">Flow</option>
+                <option value="okvpi_v1">Okvpi V1</option>
+            </select>
+        </label><br>    
+        <label>Number of Modules: <input type="number" id="modules" min="1" value="1" oninput="updateBones()"></label><br>
+        <p id="schematicNote" style="color: yellow; font-weight: bold;"></p>
 
+        <label>Bone Type:
+            <select id="boneType" onchange="updateBones()">
+                <option value="bones">Bones</option>
+                <option value="boneBlocks">Bone Blocks</option>
+            </select>
+        </label><br>
+        
+        <div class="bones-box">
+            <h3 id="bonesResult">Bones Needed: 0</h3>
+            <p id="bonesCost"></p>
+        </div> <br>
+        <label><br><b>rough estimate</b></label><br><br>
+        <a href="https://discord.gg/beyDSEqpKe" target="_blank">
+            <img src="discord-button.png" alt="Join Discord" class="discord-button">
+        </a>
+    </div>
 </body>
 </html>
