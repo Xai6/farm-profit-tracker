@@ -14,6 +14,10 @@ const farmData = {
         slotsPerModule: 9,
         extraChestSlots: 53,
         extraHoppersPer3: 3
+    },
+    "okvpi_v1": {
+        slotsPerModule: 46,
+        schematicModules: 16
     }
 };
 
@@ -44,9 +48,11 @@ function calculateProfit() {
 function updateBones() {
     let farmDesign = document.getElementById('farmDesign').value;
     let modules = parseInt(document.getElementById('modules').value);
+    let boneType = document.getElementById('boneType').value;
 
     let bonemealSlots = 0;
     let extraHoppers = 0;
+    let schematicNote = "";
 
     if (farmDesign === "3706") {
         bonemealSlots = modules * farmData["3706"].slotsPerModule;
@@ -54,17 +60,27 @@ function updateBones() {
     } else if (farmDesign === "flow") {
         bonemealSlots = modules * farmData["flow"].slotsPerModule + farmData["flow"].extraChestSlots;
         extraHoppers = Math.floor(modules / 3) * farmData["flow"].extraHoppersPer3;
+    } else if (farmDesign === "okvpi_v1") {
+        bonemealSlots = modules * farmData["okvpi_v1"].slotsPerModule;
+        schematicNote = `The schematic contains 16 modules.`;
     }
 
     let bonemealStacks = bonemealSlots + (extraHoppers * 5);
-    let bonesNeeded = Math.ceil((bonemealStacks * 64) / 3);
+    let totalBonemeal = bonemealStacks * 64;
 
-    // Calculate the cost of bones (each bone costs 49)
-    let bonesCost = bonesNeeded * 49;
+    let bonesNeeded, bonesCostTotal;
+    
+    if (boneType === "bones") {
+        bonesNeeded = Math.ceil(totalBonemeal / 3);
+        bonesCostTotal = bonesNeeded * 49;
+    } else {
+        bonesNeeded = Math.ceil(totalBonemeal / 27);
+        bonesCostTotal = bonesNeeded * 150;
+    }
 
-    // Format numbers with commas
-    document.getElementById('bonesResult').innerText = `Bones Needed: ${bonesNeeded.toLocaleString()}`;
-    document.getElementById('bonesCost').innerText = `Cost for Bones: $${bonesCost.toLocaleString()}`;
+    document.getElementById('bonesResult').innerText = `${boneType === "bones" ? "Bones" : "Bone Blocks"} Needed: ${bonesNeeded.toLocaleString()}`;
+    document.getElementById('bonesCost').innerText = `Total Cost: $${bonesCostTotal.toLocaleString()}`;
+    document.getElementById('schematicNote').innerText = schematicNote;
 }
 
 function toggleScreen() {
