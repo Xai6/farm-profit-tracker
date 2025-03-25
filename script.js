@@ -34,16 +34,24 @@ function calculateProfit() {
     let rows = parseInt(document.getElementById('rows').value);
     let height = parseInt(document.getElementById('height').value);
     let doubleSided = document.getElementById('doubleSided').checked ? 2 : 1;
+    let shulkerBox = document.getElementById('shulkerBox').checked ? true : false;
     let multiplier = parseFloat(document.getElementById('multiplier').value);
     let basePricePerStack = basePrices[farmType];
 
-    let stacksPerChest = 54;
+    let stacksPerChest = 54; 
+
+    if (shulkerBox) {
+        stacksPerChest = 1458; 
+    }
+
     let totalStacks = rows * height * doubleSided * stacksPerChest;
     let baseProfit = totalStacks * basePricePerStack;
+
     let profit = baseProfit * multiplier;
 
     document.getElementById('result').innerText = `Profit: $${profit.toLocaleString()}`;
 }
+
 
 function updateBones() {
     let farmDesign = document.getElementById('farmDesign').value;
